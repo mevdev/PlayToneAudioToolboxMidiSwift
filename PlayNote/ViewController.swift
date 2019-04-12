@@ -30,12 +30,12 @@ class ViewController: UIViewController {
     // MARK: Actions
     @objc func touchDownEvent(_ sender: AnyObject) {
         // print("TouchDown")
-        notePlayer.noteOn(note: 99)
+        notePlayer.noteOn(note: 60) //60 is middle C (C4)
     }
 
     @objc func touchUpEvent(_ sender: AnyObject) {
         // print("TouchUp")
-        notePlayer.noteOff(note: 99)
+        notePlayer.noteOff(note: 60)
     }
 
 }

@@ -10,8 +10,7 @@ import Foundation
 import AudioToolbox
 
 class NotePlayer {
-    
-    var octave = 1
+
     var midiChannel = UInt32(0)
     var midiVelocity = 100
     //
@@ -43,20 +42,14 @@ class NotePlayer {
     // MARK: Audio Action
     func noteOn(note: UInt8) {
         let noteCommand = UInt32(0x90 | self.midiChannel)
-        let base = note - 48
-        let octaveAdjust = (UInt8(octave) * 12) + base
-        let pitch = UInt32(octaveAdjust)
-
+        let pitch = UInt32(note)
         CheckError(osstatus: MusicDeviceMIDIEvent(self.midisynthUnit!,
                                                   noteCommand, pitch, UInt32(self.midiVelocity), 0))
     }
 
     func noteOff(note: UInt8) {
         let noteCommand = UInt32(0x80 | self.midiChannel)
-        let base = note - 48
-        let octaveAdjust = (UInt8(octave) * 12) + base
-        let pitch = UInt32(octaveAdjust)
-
+        let pitch = UInt32(note)
         CheckError(osstatus: MusicDeviceMIDIEvent(self.midisynthUnit!,
                                                   noteCommand, pitch, 0, 0))
     }
